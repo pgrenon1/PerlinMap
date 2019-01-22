@@ -1,8 +1,8 @@
-var cellWidth
-var imageWidth
-var imageHeight
-var grid = new Array(cols)
-var lod,
+var grid,
+  lod,
+  cellWidth,
+  imageWidth,
+  imageHeight,
   falloff,
   threshold,
   seedButton,
@@ -12,8 +12,11 @@ var lod,
   b,
   setButton,
   cols,
-  rows
-var color1, color2, color3, color4
+  rows,
+  color1,
+  color2,
+  color3,
+  color4
 var padding = 10
 
 function setup () {
