@@ -26,6 +26,8 @@ function setup () {
   imageWidth.size(50)
   imageWidth.position(windowWidth - imageWidth.size().width * 2 - padding, 0)
   imageWidth.changed(resizeImage)
+  label1 = createDiv('Width and Height:')
+  label1.position(1100, imageWidth.position().y)
 
   imageHeight = createInput(500, 'number')
   imageHeight.size(50)
@@ -36,40 +38,50 @@ function setup () {
   cellWidth.size(50)
   cellWidth.position(windowWidth - cellWidth.size().width - padding, 50)
   cellWidth.changed(resizeImage)
+  label2 = createDiv('Cell Size:')
+  label2.position(1100, cellWidth.position().y)
 
   lod = createInput(4, 'number')
   lod.size(50)
-  lod.position(windowWidth - lod.size().width - padding, 150)
+  lod.position(windowWidth - lod.size().width - padding, 100)
+  label3 = createDiv('Octaves:')
+  label3.position(1100, lod.position().y)
 
   falloff = createSlider(0.1, 2, 1, 0.01)
   falloff.size(200)
-  falloff.position(windowWidth - falloff.size().width - padding, 200)
+  falloff.position(windowWidth - falloff.size().width - padding, 150)
+  label4 = createDiv('Falloff Factor:')
+  label4.position(1100, falloff.position().y)
 
   threshold = createSlider(1, 255, 0, 1)
   threshold.size(200)
-  threshold.position(windowWidth - threshold.size().width - padding, 250)
+  threshold.position(windowWidth - threshold.size().width - padding, 200)
+  label5 = createDiv('Color Threshold:')
+  label5.position(1100, threshold.position().y)
 
   color1 = createInput(0, 'color')
-  color1.position(windowWidth - color1.size().width - padding, 300)
+  color1.value('#03409b')
+  color1.position(windowWidth - color1.size().width - padding, 250)
+  label6 = createDiv('Color:')
+  label6.position(1100, color1.position().y)
 
-  setButton = createButton('Confirm Color')
+  setButton = createButton('Set Color')
   setButton.mousePressed(setColors)
-  setButton.position(windowWidth - setButton.size().width - padding, 350)
+  setButton.position(windowWidth - setButton.size().width - padding, 300)
 
   seedButton = createButton('New Noise Seed')
   seedButton.mousePressed(newSeed)
   seedButton.size(100, 50)
-  seedButton.position(windowWidth - seedButton.size().width - padding, 450)
+  seedButton.position(windowWidth - seedButton.size().width - padding, 350)
 
   cols = imageWidth.value() / cellWidth.value()
   rows = imageHeight.value() / cellWidth.value()
   createCanvas(imageWidth.value(), imageHeight.value())
 
-  for (let i = 0; i < cols; i++) {
-    grid[i] = new Array(rows)
-  }
+  grid = new Array(cols)
 
   for (let i = 0; i < cols; i++) {
+    grid[i] = new Array(rows)
     for (let j = 0; j < rows; j++) {
       grid[i][j] = new Cell(i, j)
     }
